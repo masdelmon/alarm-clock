@@ -1,0 +1,99 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>com.hello2morrow.sonargraph.test</groupId>
+	<artifactId>AlarmClockMain</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	
+	<name>AlarmClockMain</name>
+	<description>Main Project</description>
+	<modules>
+		<module>AlarmClock</module>
+		<module>Application</module>
+	</modules>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>maven-central-repository</id>
+            <url>http://repo1.maven.org/maven2</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>hello2morrow.maven.repository</id>
+            <url>https://maven.hello2morrow.com/repository</url>
+        </pluginRepository>
+    </pluginRepositories>
+    
+    <build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+            <!--
+                Sonargraph plugin will not work together with Tycho plugin. 
+                Workaround: Put Tycho plugin in a separate maven profile.
+                For more information about the error and possible solutions, please read Sonargraph Build Manual at
+                http://eclipse.hello2morrow.com/doc/build/content/integrating_with_maven.html
+            -->
+            <plugin>
+                <groupId>com.hello2morrow</groupId>
+                <artifactId>sonargraph-maven-plugin</artifactId>
+                <version>12.0.5</version>
+                <configuration>
+                	<!--  This example uses an activation code for a free Sonargraph-Explorer license. 
+						  Advanced features like architecture check, quality gates, scripting, etc. 
+						  are only available with a Sonargraph-Architect license.
+						  You can request a Sonargraph-Architect evaluation license on our website.	  
+					-->
+                    <systemDirectory>${basedir}/AlarmClock.sonargraph</systemDirectory>
+                    <activationCode>36E2-0F3E-643F-B4F2</activationCode>
+                    <installationDirectory>${basedir}/../..</installationDirectory>
+                    <failSet>
+                        <failOnEmptyWorkspace>false</failOnEmptyWorkspace>
+                        <includes>
+                            <include>
+                                <issueType>any</issueType>
+                                <severity>error</severity>
+                                <resolution>none</resolution>
+                            </include>
+                            <include>
+                                <issueType>ArchitectureViolation</issueType>
+                            </include>
+                            <include>
+                                <issueType>any</issueType>
+                                <severity>warning</severity>
+                            </include>
+                        </includes>
+                        <excludes>
+                            <exclude>
+                                <issueType>ScriptCompilationError</issueType>
+                                <resolution>none</resolution>
+                            </exclude>
+                            <exclude>
+                            	<issueType>Supertype uses subtype</issueType>
+                            </exclude>	
+                            <exclude>
+                                <issueType>ThresholdViolation</issueType>
+                            </exclude>
+                        </excludes>
+                    </failSet>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>create-report</goal>
+                            <goal>dynamic-report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+		</plugins>
+	</build>
+</project>
