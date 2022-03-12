@@ -5,7 +5,7 @@ pipeline {
 stage('Sonarqube scan') {
             environment {
                 scannerHome = tool 'SonarQubeScanner'
-                SONAR_API_TOKEN=credentials('1fc93d0ff8d916343f84972a86a46d5da73fd3cd')
+                SONAR_API_TOKEN= '1fc93d0ff8d916343f84972a86a46d5da73fd3cd'
             }
             steps {
                 withSonarQubeEnv('sonarqube') {
