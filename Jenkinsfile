@@ -3,9 +3,6 @@ pipeline {
     agent any
     stages {
 stage('Sonarqube scan') {
-            environment {
-
-            }
             steps {
                 withSonarQubeEnv('sonarqube') {
                     sh '''/home/vagrant/sonar-scanner-4.2.0.1873-linux/bin/bin/sonar-scanner \
