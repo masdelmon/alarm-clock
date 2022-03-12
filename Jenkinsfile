@@ -14,7 +14,13 @@ pipeline {
              }
       }
     }
-    
+            stage('Sonarqube quality gate') {
+            steps {
+                timeout(time: 10, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
         stage('JaCoCo') {
             steps {
                 echo 'Code Coverage'
