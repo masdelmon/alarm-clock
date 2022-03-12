@@ -10,8 +10,6 @@ pipeline {
         stage('Quality Gate') {
             steps {
                   waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
-                 }
-            }
         }
         stage('JaCoCo') {
             steps {
