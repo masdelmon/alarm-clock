@@ -4,7 +4,7 @@
     stages {
         stage('build') {
             steps {
-              sh 'mvn clean package   org.sonarsource.scanner.maven:sonar-maven-plugin:3.0:sonar  -Dsonar.host.url=http://localhost:9000'
+              sh 'mvn clean verify sonar:sonar -Dsonar.login=1fc93d0ff8d916343f84972a86a46d5da73fd3cd'
             }
         }
         stage('JaCoCo') {
