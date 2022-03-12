@@ -5,7 +5,7 @@
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh "mvn clean package   org.sonarsource.scanner.maven:sonar-maven-plugin:3.0:sonar  -Dsonar.host.url=http://localhost:9000"
+                    sh "mvn verify sonar:sonar"
                 }
             }
         }
