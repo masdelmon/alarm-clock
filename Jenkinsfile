@@ -2,9 +2,11 @@
     
     agent any
     stages {
-        stage('build') {
+        stage('SonarQube analysis') {
             steps {
-              sh 'mvn clean package   org.sonarsource.scanner.maven:sonar-maven-plugin:3.0:sonar  -Dsonar.host.url=http://localhost:9000'
+                withSonarQubeEnv('SonarQube') {
+                    sh "./gradlew sonarqube"
+                }
             }
         }
         stage("Quality gate") {
