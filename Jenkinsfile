@@ -1,26 +1,13 @@
-pipeline {
+  pipeline {
     
     agent any
     stages {
-    stage('SonarQube analysis') {
-      steps {
-                  withSonarQubeEnv('sq') {
-                    sh '''/home/vagrant/sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner -X \
-                    -Dsonar.login=1fc93d0ff8d916343f84972a86a46d5da73fd3cd   \
-                    -Dsonar.projectKey=com.hello2morrow.sonargraph.test:AlarmClock \
-                    -Dsonar.projectName=AlarmClockMain \
-                    -Dsonar.projectVersion=1.0 \
-                    -Dsonar.sourceEncoding=UTF-8'''
-             }
-      }
-    }
-    stage('Sonarqube quality gate') {
+        stage('build') {
             steps {
-                timeout(time: 2, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
+              sh 'mvn clean package   org.sonarsource.scanner.maven:sonar-maven-plugin:3.0:sonar  -Dsonar.host.url=http://localhost:9000'
             }
-        }        
+        }
+		
         stage('JaCoCo') {
             steps {
                 echo 'Code Coverage'
