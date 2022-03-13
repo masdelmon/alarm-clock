@@ -13,7 +13,13 @@
 		<module>AlarmClock</module>
 		<module>Application</module>
 	</modules>
-    
+    <dipendencies>
+		<dependency>
+    			<groupId>org.eclipse.osgi</groupId>
+    			<artifactId>org.eclipse.osgi</artifactId>
+   			 <version>3.7.1</version>
+		</dependency>
+	</dipendencies>
     <pluginRepositories>
         <pluginRepository>
             <id>maven-central-repository</id>
