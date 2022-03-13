@@ -32,7 +32,7 @@
 	<pluginRepository>
             <id>org.eclipse.osgi</id>
             <url>https://mvnrepository.com/artifact/org.eclipse.osgi/org.eclipse.osgi</url>
-        </pluginRepository
+         </pluginRepository>
     </pluginRepositories>
     
     <build>
