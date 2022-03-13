@@ -23,6 +23,10 @@
             <id>hello2morrow.maven.repository</id>
             <url>https://maven.hello2morrow.com/repository</url>
         </pluginRepository>
+	<pluginRepository>
+            <id>org.eclipse.osgi</id>
+            <url>https://mvnrepository.com/artifact/org.eclipse.osgi/org.eclipse.osgi</url>
+        </pluginRepository
     </pluginRepositories>
     
     <build>
