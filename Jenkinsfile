@@ -2,22 +2,10 @@ pipeline {
     
     agent any
     stages {
-    stage('SonarQube analysis') {
-      steps {
-                    sh '''/home/vagrant/sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner \
-                    -Dsonar.login=1fc93d0ff8d916343f84972a86a46d5da73fd3cd   \
-                    -Dsonar.projectKey=com.hello2morrow.sonargraph.test:AlarmClock \
-                    -Dsonar.projectName=AlarmClockMain \
-                    -Dsonar.projectVersion=1.0 \
-                    -Dsonar.sourceEncoding=UTF-8'''
-      }
-    }
-
-        stage('JaCoCo') {
+        stage('build') {
             steps {
-                echo 'Code Coverage'
-                jacoco()
+                sh 'mvn clean verify  org.sonarsource.scanner.maven:sonar-maven-plugin:3.0:sonar  -Dsonar.host.url=http://127.0.0.1:9000'
             }
-        }
+        }  
       }
 }
