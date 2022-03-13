@@ -13,13 +13,6 @@
 		<module>AlarmClock</module>
 		<module>Application</module>
 	</modules>
-    <dependencies>
-		<dependency>
-    			<groupId>org.eclipse.osgi</groupId>
-    			<artifactId>org.eclipse.osgi</artifactId>
-   			 <version>3.7.1</version>
-		</dependency>
-   </dependencies>
     <pluginRepositories>
         <pluginRepository>
             <id>maven-central-repository</id>
@@ -29,10 +22,6 @@
             <id>hello2morrow.maven.repository</id>
             <url>https://maven.hello2morrow.com/repository</url>
         </pluginRepository>
-	<pluginRepository>
-            <id>org.eclipse.osgi</id>
-            <url>https://mvnrepository.com/artifact/org.eclipse.osgi/org.eclipse.osgi</url>
-         </pluginRepository>
     </pluginRepositories>
     
     <build>
